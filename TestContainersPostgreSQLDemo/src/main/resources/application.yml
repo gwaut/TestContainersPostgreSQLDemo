@@ -1,0 +1,29 @@
+spring:
+  liquibase:
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.dba-username}
+    password: ${spring.datasource.dba-password}
+    change-log: classpath:/db/changelog/changelog-master.xml
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/demo"
+    dba-username: demo_dba
+    dba-password: demo_dba
+    jmx-enabled: true
+    ddl-user-role: demo_ddl
+    dml-user-role: demo_dml
+    hikari:
+      jdbc-url: ${spring.datasource.url}
+      username: demo_app
+      password: demo_app
+      connection-timeout: 2000
+      minimum-idle: 1
+      maximum-pool-size: 5
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      connectionTestQuery: SELECT 1
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database: POSTGRESQL
+    properties:
+      hibernate.default_schema: public
+
