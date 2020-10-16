@@ -1,8 +1,6 @@
 package com.example.TestContainersPostgreSQLDemo;
 
-import org.junit.ClassRule;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
@@ -17,7 +15,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @ContextConfiguration(initializers = {TestContainersPostgreSqlDemoApplicationTests.Initializer.class})
 class TestContainersPostgreSqlDemoApplicationTests {
 
-	 @ClassRule
 	 @Container
 	 public static PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:12.3")
 	      .withInitScript("db/docker/init-db.sql");
