@@ -9,6 +9,12 @@
     <changeSet author="gwaut" id="00001">
     	<createSequence sequenceName="hibernate_sequence" />
     
+    	<sql>
+    		grant usage on sequence hibernate_sequence to demo_dml;
+    		grant select on sequence hibernate_sequence to demo_ro;
+    		revoke all on sequence hibernate_sequence from public;
+    	</sql>
+    	
         <createTable tableName="customer">
             <column autoIncrement="true" name="id" type="bigint">
                 <constraints primaryKey="true"/>
@@ -20,6 +26,12 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+        
+        <sql>
+        	grant select, update, delete, insert on table customer to demo_dml;
+        	grant select on table customer to demo_ro;
+        	revoke all on table customer from public;
+        </sql>
         
         <rollback>
             <dropTable tableName="customer" />
